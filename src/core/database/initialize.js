@@ -25,19 +25,12 @@ export const modelAssociations = async () => {
     sourceKey: "id",
     foreignKey: "productId",
   });
-  // models.productVariants.hasMany(models.reviews, {
-  //   sourceKey: "id",
-  //   // foreignKey: "variantId",
-  // });
+
   models.customer.hasMany(models.reviews, {
     sourceKey: "id",
     foreignKey: "customerId",
   });
-  //cart
-  // models.cart.belongsTo(models.productVariants, {
-  //   sourceKey: "id",
-  //   foreignKey: "variantId",
-  // });
+
   //customer
   models.shippingAddress.belongsTo(models.customer, {
     sourceKey: "id",
