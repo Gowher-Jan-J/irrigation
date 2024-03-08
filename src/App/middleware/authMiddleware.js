@@ -5,6 +5,7 @@ import { authentications } from "../../core/utils/jwt.js";
 import { userDbController } from "../../core/database/Controller/userDbController.js";
 import { NodeMailerfunction } from "../../core/utils/nodemailer.js";
 import { PayloadCompiler } from "../../core/inc/access/PayloadCompiler.js";
+import { defaultdata } from "../../../config/config.js";
 
 export class authMiddleware { }
 
@@ -12,7 +13,7 @@ authMiddleware.User = {
   email_login: async ({ body }, device) => {
     const validated = await PayloadCompiler.compile(body, "userLogin");
     const userFound = await userDbController.Auth.checkemailExists(validated.data);
-    const passwordSecret = await configs.passwordSecret;
+    const passwordSecret = defaultdata.configuration.passwordSecret;
     if (!userFound || Object.keys(userFound).length === 0) {
       //no user available shouldnt be displayed to user
       throw Error.SomethingWentWrong("Wrong Email/Password. Try Again!");
@@ -22,28 +23,29 @@ authMiddleware.User = {
       //send mail to activate account
       throw Error.SomethingWentWrong("Account InActive");
     } else if (userFound.status === "active") {
-      try {
-        const plain = CryptoJS.AES.decrypt(userFound.password, passwordSecret);
-        const decrypted = plain.toString(CryptoJS.enc.Utf8);
-        if (decrypted === body.password) {
-          const token = await authentications.generateUserJWT({ userId: userFound.id, status: "active", });
-          if (token) {
-            var encryptedToken = CryptoJS.AES.encrypt(token, passwordSecret).toString();
-            const addSession = await userDbController.Auth.session.createSession(encryptedToken, device);
-            if (addSession != null && addSession != undefined) {
-              return { token: encryptedToken, name: userFound.userName };
-            } else {
-              throw Error.SomethingWentWrong();
-            }
+
+      const plain = CryptoJS.AES.decrypt(userFound.password, passwordSecret);
+      console.log("🚀 ~ email_login: ~ userFound:", userFound)
+      const decrypted = plain.toString(CryptoJS.enc.Utf8);
+      if (decrypted === body.password) {
+        console.log("🚀 ~ email_login: ~ userFound.id:", userFound.id)
+        const token = await authentications.generateUserJWT({ userId: userFound.id, status: "active", });
+
+        if (token) {
+          var encryptedToken = CryptoJS.AES.encrypt(token, passwordSecret).toString();
+          const addSession = await userDbController.Auth.session.createSession(encryptedToken, device);
+          if (addSession != null && addSession != undefined) {
+            return { token: encryptedToken, name: userFound.userName };
           } else {
             throw Error.SomethingWentWrong();
           }
         } else {
-          throw Error.SomethingWentWrong("Wrong Email/Password. Try Again!");
+          throw Error.SomethingWentWrong();
         }
-      } catch (error) {
+      } else {
         throw Error.SomethingWentWrong("Wrong Email/Password. Try Again!");
       }
+
     } else {
       throw Error.SomethingWentWrong();
     }

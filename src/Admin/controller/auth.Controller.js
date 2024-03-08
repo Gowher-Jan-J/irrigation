@@ -120,7 +120,28 @@ export const adminSessions = {
 export const adminRegister = async (req, res) => {
     authMiddleware.Admin.adminRegister(req)
         .then((data) => {
-            // console.log(data);
+            console.log(data);
+            const response = ApplicationResult.forCreated();
+            var statuscode = 0;
+            ApplicationResponse.success(
+                response,
+                null,
+                (response) => (statuscode = response.status)
+            );
+            res.json({ status: statuscode, data: data });
+        })
+        .catch((error) => {
+            // console.log(error);
+            ApplicationResponse.error(error, null, (response) => {
+                res.status(response.status).json(response);
+            });
+        });
+};
+export const getAdmin = async (req, res) => {
+    authMiddleware.Admin.getAdmin(req)
+        .then((data) => {
+            console.log(data);
+            console.log("hii");
             const response = ApplicationResult.forCreated();
             var statuscode = 0;
             ApplicationResponse.success(

@@ -159,4 +159,4 @@ customerAuthentication.init(
   },
   { sequelize: connection, freezeTableName: true }
 );
-export { customer, shippingAddress, customerAuthentication};
+export { customer, shippingAddress, customerAuthentication };

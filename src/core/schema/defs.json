@@ -213,9 +213,8 @@
         "title": "FCM Token"
       },
       "phone": {
-        "type": "number",
-        "title": "Contact",
-        "format": "numeric"
+        "type": "string",
+        "title": "Contact"
       },
       "dob": {
         "type": "string",
@@ -797,83 +796,6 @@
       "review": {
         "type": "string",
         "title": "Review"
-      },
-      "status": {
-        "type": "string",
-        "title": "status",
-        "enum": [
-          "active",
-          "inactive",
-          "terminated"
-        ]
-      }
-    },
-    "Vendor": {
-      "vendorId": {
-        "type": "integer",
-        "title": "vendor Id",
-        "format": "numeric"
-      },
-      "name": {
-        "type": "string",
-        "title": "Vendor Name"
-      },
-      "companyName": {
-        "type": "string",
-        "title": "company Name "
-      },
-      "userName": {
-        "type": "string",
-        "title": "user Name"
-      },
-      "gstNonGst": {
-        "type": "string",
-        "title": "gstNonGst"
-      },
-      "contact": {
-        "type": "integer",
-        "title": "contact"
-      },
-      "address": {
-        "type": "string",
-        "title": "address  "
-      },
-      "password": {
-        "type": "string",
-        "title": "password"
-      },
-      "companyType": {
-        "type": "string",
-        "title": "company Type"
-      },
-      "contactPerson": {
-        "type": "integer",
-        "title": "contact Person"
-      },
-      "yourRole": {
-        "type": "string",
-        "title": "your Role"
-      },
-      "domain": {
-        "type": "string",
-        "title": "domain "
-      },
-      "bankDetails": {
-        "type": "string",
-        "title": "bankDetails"
-      },
-      "mail": {
-        "type": "string",
-        "title": "mail"
-      },
-      "email": {
-        "type": "string",
-        "title": "email"
-        
-      },
-      "department": {
-        "type": "string",
-        "title": "department"
       },
       "status": {
         "type": "string",

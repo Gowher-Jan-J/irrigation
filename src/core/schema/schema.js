@@ -531,61 +531,7 @@ const Reviews = {
         },
     },
 };
-const Vendor = {
-    properties: {
-        vendorId: {
-            $ref: "defs#/definitions/Vendor/vendorId",
-        },
-        name: {
-            $ref: "defs#/definitions/Vendor/name",
-        },
-        companyName: {
-            $ref: "defs#/definitions/Vendor/companyName",
-        },
-        userName: {
-            $ref: "defs#/definitions/Vendor/userName",
-        },
-        gstNonGst: {
-            $ref: "defs#/definitions/Vendor/gstNonGst",
-        },
-        email: {
-            $ref: "defs#/definitions/Vendor/email",
-        },
-        contact: {
-            $ref: "defs#/definitions/Vendor/contact",
-        },
-        address: {
-            $ref: "defs#/definitions/Vendor/address",
-        },
-        password: {
-            $ref: "defs#/definitions/Vendor/password",
-        },
-        companyType: {
-            $ref: "defs#/definitions/Vendor/companyType",
-        },
-        contactPerson: {
-            $ref: "defs#/definitions/Vendor/contactPerson",
-        },
-        yourRole: {
-            $ref: "defs#/definitions/Vendor/yourRole",
-        },
-        domain: {
-            $ref: "defs#/definitions/Vendor/domain",
-        },
-        bankDetails: {
-            $ref: "defs#/definitions/Vendor/bankDetails",
-        },
-        mail: {
-            $ref: "defs#/definitions/Vendor/mail",
-        },
-        department: {
-            $ref: "defs#/definitions/Vendor/department",
-        },
-        status: {
-            $ref: "defs#/definitions/Vendor/status",
-        },
-    },
-};
+
 
 
 
@@ -693,7 +639,6 @@ export const CustomerCreate = {
     $id: "CustomerCreate",
     additionalProperties: false,
     properties: {
-        CustomerId: Customer.properties.CustomerId,
         userName: Customer.properties.userName,
         password: Customer.properties.password,
         alaisName: Customer.properties.alaisName,
@@ -703,7 +648,6 @@ export const CustomerCreate = {
         gender: Customer.properties.gender
     },
     required: [
-        "CustomerId",
         "userName",
         "password",
         "alaisName",
@@ -920,59 +864,5 @@ export const ReviewsCreate = {
 };
 
 
-export const VendorCreate = {
-    type: "object",
-    $id: "VendorCreate",
-    additionalProperties: false,
-    properties: {
-        vendorId: Vendor.properties.vendorId,
-        name: Vendor.properties.name,
-        companyName: Vendor.properties.companyName,
-        userName: Vendor.properties.userName,
-        gstNonGst: Vendor.properties.gstNonGst,
-        contact: Vendor.properties.contact,
-        address: Vendor.properties.address,
-        password: Vendor.properties.password,
-        companyType: Vendor.properties.companyType,
-        contactPerson: Vendor.properties.contactPerson,
-        yourRole: Vendor.properties.yourRole,
-        domain: Vendor.properties.domain,
-        bankDetails: Vendor.properties.bankDetails,
-        mail: Vendor.properties.mail,
-        email: Vendor.properties.email,
-        department: Vendor.properties.department,
-        status: Vendor.properties.status,
-    
-    },
-    required: [
-        "vendorId",
-        "name",
-        "companyName",
-        "userName",
-        "gstNonGst",
-        "contact",
-        "address",
-        "password",
-        "companyType",
-        "contactPerson",
-        "yourRole",
-        "domain",
-        "bankDetails",
-        "mail",
-        "email",
-        "department",
-        "status",
-        
-    ],
-};
 
-export const vendorLogin = {
-    type: "object",
-    $id: "vendorLogin",
-    additionalProperties: false,
-    properties: {
-        email: Vendor.properties.email,
-        password: Vendor.properties.password,
-    },
-    required: ["email", "password"],
-};
+

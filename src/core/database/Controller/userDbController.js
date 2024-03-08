@@ -147,7 +147,7 @@ userDbController.Customer = {
         status: "inactive",
       });
     } catch (error) {
-
+      console.log(error);
       throw Error.InternalError();
     }
   },
