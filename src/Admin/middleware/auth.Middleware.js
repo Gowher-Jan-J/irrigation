@@ -99,7 +99,7 @@ authMiddleware.Admin = {
         const accoundFound = await adminDbController.Auth.checkAdminExistsRegister(body);
 
         if (accoundFound != null && accoundFound != undefined && Object.keys(accoundFound).length != 0) {
-            throw Error.AuthenticationFailed("Already Exists");
+              return  "Already Exists";
         } else {
 
             body.password = CryptoJS.AES.encrypt(body.password, passwordSecret).toString();

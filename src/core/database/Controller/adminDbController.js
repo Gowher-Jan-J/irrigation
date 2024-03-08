@@ -41,8 +41,8 @@ adminDbController.Auth = {
       return await adminDbController.Models.admin.findOne({
         where: {
           [Op.or]: {
-            email: data.userName || null,
-            phone: data.phone || null,
+            email: data.email ,
+            phone: data.phone 
           },
         },
         raw: true,
@@ -230,11 +230,13 @@ adminDbController.Auth = {
 
 adminDbController.Admin = {
   createAdmin: async (data) => {
+    console.log(data);
     try {
       return await adminDbController.Models.admin.create({
         email: data.email,
         phone: data.phone,
         password: data.password,
+        username:data.username,
         status: "inactive",
         type: "USER",
       }, { raw: true })
