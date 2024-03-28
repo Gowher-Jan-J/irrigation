@@ -27,26 +27,10 @@ customerMiddleware.Customer = {
       }
       const newUser = await userDbController.Customer.createCustomer(body);
       return " Registered Successfully";
-      // if (newUser != null && newUser != undefined && Object.keys(newUser).length != 0) {
-      //   //generate new verify token
-      //   await NodeMailerfunction.Email.getStarted(newUser);
-      //   return "Verification Link Sent";
-      // }
-      // else {
-      //   return "Failed to create User";
-      // }
     } else if (existingUser.status == "inactive") {
       return "Pls verify your account";
 
     }
-    //activate Account
-    // await NodeMailerfunction.Email.getStarted(existingUser);
-    // return "Verification Link Sent Again";
-    // } else if (existingUser.status == "terminated") {
-    //activate Account
-    // await NodeMailerfunction.Email.getStarted(existingUser);
-    // return "You have been Terminated..!";
-
     else {
       return "Account Already Exists";
     }
