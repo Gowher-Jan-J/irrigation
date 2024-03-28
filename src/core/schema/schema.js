@@ -599,8 +599,9 @@ export const AdminCreate = {
         email: Admin.properties.email,
         password: Admin.properties.password,
         phone: Admin.properties.phone,
+        username:Admin.properties.username,
     },
-    required: ["email", "password", "phone"],
+    required: ["email", "password", "phone","username"],
 };
 
 export const appConfigCreate = {

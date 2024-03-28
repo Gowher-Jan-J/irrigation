@@ -3,7 +3,7 @@ import * as Error from "../../core/errors/ErrorConstant.js";
 import require from "requirejs"
 import moment from "moment";
 import dotenv from "dotenv";
-import Razorpay from "razorpay";
+// import Razorpay from "razorpay";
 dotenv.config();
 
 export class orderMiddleware { }

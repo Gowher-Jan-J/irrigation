@@ -52,7 +52,7 @@ export const adminLogin = async (req, res) => {
             res.json({ status: statuscode, data: data });
         })
         .catch((error) => {
-            // console.log(error);
+            console.log(error);
             ApplicationResponse.error(error, null, (response) => {
                 res.status(response.status).json(response);
             });
@@ -152,7 +152,7 @@ export const getAdmin = async (req, res) => {
             res.json({ status: statuscode, data: data });
         })
         .catch((error) => {
-            // console.log(error);
+            console.log(error);
             ApplicationResponse.error(error, null, (response) => {
                 res.status(response.status).json(response);
             });
