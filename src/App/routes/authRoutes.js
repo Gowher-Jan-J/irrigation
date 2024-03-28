@@ -25,8 +25,8 @@ authRouter.post("/logout", logout)
 
 
 //account management
-authRouter.post("/sendEmailCode", apiLimiter, Forgot);
-authRouter.post("/verifyEmailCode", apiLimiter, verifyCode);
+// authRouter.post("/sendEmailCode", apiLimiter, Forgot);
+// authRouter.post("/verifyEmailCode", apiLimiter, verifyCode);
 
 
 export { authRouter };

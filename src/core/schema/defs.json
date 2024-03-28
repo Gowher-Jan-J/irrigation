@@ -181,14 +181,9 @@
         "title": "Customer Id",
         "format": "numeric"
       },
-      "code": {
-        "type": "integer",
-        "title": "Customer Id",
-        "format": "numeric"
-      },
-      "expiry": {
+      "profilePic": {
         "type": "string",
-        "title": "Expiry Time"
+        "title": "Profile Pic"
       },
       "userName": {
         "type": "string",
@@ -199,7 +194,7 @@
         "type": "string",
         "title": "Password"
       },
-      "alaisName": {
+      "fullName": {
         "type": "string",
         "title": "Nick Name"
       },
@@ -207,10 +202,6 @@
         "type": "string",
         "title": "Email",
         "format": "email"
-      },
-      "fcmToken": {
-        "type": "string",
-        "title": "FCM Token"
       },
       "phone": {
         "type": "string",

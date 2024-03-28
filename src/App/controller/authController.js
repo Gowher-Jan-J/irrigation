@@ -141,6 +141,7 @@ export const UserAuthenticate = async (req, res, next) => {
       next();
     })
     .catch((error) => {
+      console.log(error);
       ApplicationResponse.error(error, null, (response) => {
         res.status(response.status).json(response);
       });

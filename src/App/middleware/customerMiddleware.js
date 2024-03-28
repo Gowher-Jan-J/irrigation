@@ -51,18 +51,27 @@ customerMiddleware.Customer = {
       return "Account Already Exists";
     }
   },
+
+
   fetchCustomer: async ({ token, body }) => {
-    if (token == false) {
-      throw Error.AuthenticationFailed();
+    if (!token) {
+      throw new Error('AuthenticationFailed');
     }
+    const passwordSecret = defaultdata.configuration.passwordSecret;
     body.customerId = token;
     const fetched = await userDbController.Customer.fetchCustomer(body);
-    if (fetched != null && fetched != undefined && Object.keys(fetched).length != 0) {
+    if (fetched && Object.keys(fetched).length !== 0) {
+      if (fetched.password) {
+        fetched.password = CryptoJS.AES.decrypt(fetched.password, passwordSecret).toString(CryptoJS.enc.Utf8);
+      }
       return fetched;
     } else {
-      throw Error.SomethingWentWrong();
+      throw new Error('SomethingWentWrong');
     }
   },
+
+
+
   putCustomer: async ({ body, token, image }) => {
     body.userId = token;
     const findUser = await userDbController.Customer.checkUserExists(body);

@@ -12,14 +12,6 @@ customer.init(
       autoIncrement: true,
       allowNull: true,
     },
-    code: {
-      type: DataTypes.INTEGER(10),
-      allowNull: true,
-    },
-    expiry: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
     profilePic: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -32,7 +24,7 @@ customer.init(
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-    alaisName: {
+    fullName: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
@@ -53,25 +45,11 @@ customer.init(
       allowNull: true,
       defaultValue: "male",
     },
-    isMailVerified: {
-      type: DataTypes.ENUM("yes", "no"),
-      allowNull: false,
-      defaultValue: "no",
-    },
-    isPhoneVerified: {
-      type: DataTypes.ENUM("yes", "no"),
-      allowNull: false,
-      defaultValue: "no",
-    },
-    acceptTerms: {
-      type: DataTypes.ENUM("yes", "no"),
-      allowNull: false,
-      defaultValue: "no",
-    },
+
     status: {
       type: DataTypes.ENUM("active", "inactive", "terminated"),
       allowNull: true,
-      defaultValue: "inactive",
+      defaultValue: "active",
     },
   },
   { sequelize: connection, freezeTableName: true }

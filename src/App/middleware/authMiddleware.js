@@ -158,7 +158,7 @@ authMiddleware.User = {
       );
 
       if (findSession != null && findSession != undefined && Object.keys(findSession).length != 0) {
-        var plain = CryptoJS.AES.decrypt(findSession.token, configs.passwordSecret);
+        var plain = CryptoJS.AES.decrypt(findSession.token, defaultdata.configuration.passwordSecret);
         findSession.token = plain.toString(CryptoJS.enc.Utf8);
 
         const decoded = await authentications.verifyUserJWT(findSession.token);

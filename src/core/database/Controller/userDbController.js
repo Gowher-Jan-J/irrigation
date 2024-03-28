@@ -138,12 +138,12 @@ userDbController.Customer = {
     try {
       return await userDbController.Models.customer.create({
         userName: data.userName,
+        fullName: data.fullName,
         email: data.email,
         password: data.password,
         phone: data.phone,
         dob: data.dob,
         gender: data.gender,
-        acceptTerms: data.acceptTerms,
         status: "inactive",
       });
     } catch (error) {
@@ -179,11 +179,11 @@ userDbController.Customer = {
       return await userDbController.Models.customer.findOne({
         where: {
           id: data.customerId,
-        }, attributes: {
-          exclude: ["code", "password", "fcmToken", "createdAt", "updatedAt", "expiry", "status"]
-        }, raw: true,
+        }, attributes: ["profilePic", "userName", "password", "fullName", "email", "phone", "dob", "gender"],
+        raw: true,
       });
     } catch (error) {
+      console.log(error);
       throw Error.InternalError();
     }
   },

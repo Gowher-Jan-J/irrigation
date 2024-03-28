@@ -11,7 +11,7 @@ const customerRouter = Router();
 //customer
 customerRouter.get("/getUser", UserAuthenticate, CustomerController.Customer.getCustomer);
 customerRouter.post("/register", CustomerController.Customer.addCustomer);
-customerRouter.post("/updateUser", UserAuthenticate,Resizer, CustomerController.Customer.updateCustomer);
+customerRouter.post("/updateUser", UserAuthenticate, Resizer, CustomerController.Customer.updateCustomer);
 
 //shipping address
 customerRouter.get("/getAddress", UserAuthenticate, CustomerController.Address.getAddress);
