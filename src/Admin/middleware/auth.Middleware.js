@@ -122,6 +122,14 @@ authMiddleware.Admin = {
             return "No Sessions Found"
         }
     },
+    getAdmin: async ({ token }) => {
+        const accoundFound = await adminDbController.Admin.getAdmin(token);
+        if (accoundFound != null && accoundFound != undefined) {
+            return accoundFound;
+        } else {
+            return "No Sessions Found"
+        }
+    },
     destroySession: async ({ body }) => {
         const checkSession = await adminDbController.Auth.session.findSessionById(body);
         if (checkSession.status === "active") {

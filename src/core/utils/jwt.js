@@ -7,23 +7,25 @@ import { defaultdata } from "../../../config/config.js";
 export const authentications = {
     generateUserJWT: async (token) => {
         try {
-            return jwt.sign(token, configs.jwtClientSecret, {
+            // console.log("🚀 ~ generateUserJWT: ~ configs.jwtClientSecret:", defaultdata.configuration.jwtClientSecret)
+            return jwt.sign(token, defaultdata.configuration.jwtClientSecret, {
                 algorithm: "HS256",
             });
+
         } catch (error) {
             throw Error.SomethingWentWrong();
         }
     },
     verifyUserJWT: async (header) => {
         try {
-            return jwt.verify(header, configs.jwtClientSecret);
+            return jwt.verify(header, defaultdata.configuration.jwtClientSecret);
         } catch (error) {
             throw Error.SomethingWentWrong();
         }
     },
     generateEmailToken: async (token) => {
         try {
-            return jwt.sign(token, configs.jwtEmailSecret, {
+            return jwt.sign(token, defaultdata.configuration.jwtEmailSecret, {
                 algorithm: "HS256",
                 expiresIn: "10m"
             });
@@ -33,7 +35,7 @@ export const authentications = {
     },
     verifyEmailToken: async (token) => {
         try {
-            return jwt.verify(token, configs.jwtEmailSecret);
+            return jwt.verify(token, defaultdata.configuration.jwtEmailSecret);
         } catch (error) {
             return null;
         }
@@ -53,31 +55,9 @@ export const authentications = {
     verifyAdminJWT: async (header) => {
         try {
 
-            return jwt.verify(header, configs.jwtAdminSecret);
+            return jwt.verify(header, defaultdata.configuration.jwtAdminSecret);
         } catch (error) {
             return null;
         }
     },
-
-
-
-    generateVendorJWT: async (token) => {
-        try {
-            return jwt.sign(token, configs.jwtVendorSecret, {
-                algorithm: "HS256"
-            });
-        } catch (error) {
-            throw Error.SomethingWentWrong("Unable to Generate Token");
-        }
-    },
-    verifyVendorJWT: async (header) => {
-        try {
-            return jwt.verify(header, configs.jwtVendorSecret);
-        } catch (error) {
-
-            return null;
-        }
-    },
-
-
-};
+}

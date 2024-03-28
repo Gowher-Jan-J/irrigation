@@ -2,8 +2,8 @@ import require from "requirejs";
 var CryptoJS = require("crypto-js");
 // import * as Error from "../../core/errors/ErrorConstant.js";
 // import { authentications } from "../../core/utils/jwt.js";
-// import { adminDbController } from "../../core/database/Controller/adminDbController.js";
-// import { PayloadCompiler } from "../../core/inc/access/PayloadCompiler.js";
+import { adminDbController } from "../../src/core/database/Controller/adminDbController.js";
+import { PayloadCompiler } from "../../core/inc/access/PayloadCompiler.js";
 
 export class authMiddleware { }
 
@@ -14,7 +14,7 @@ authMiddleware.Admin = {
         // }
         device.latLong = JSON.stringify(body.latLong);
         const passwordSecret = configs.passwordSecret;
-        const userFound = await adminDbController.Auth.checkAdminExistsLogin(body);
+        const userFound = await adminDbController.Admin.checkAdminExistsLogin(body);
 
         if (userFound === null || userFound === undefined || Object.keys(userFound).length === 0) {
             //no user available shouldnt be displayed to user
@@ -103,6 +103,7 @@ authMiddleware.Admin = {
             body.password = CryptoJS.AES.encrypt(body.password, passwordSecret).toString();
             // schema
             const validated = await PayloadCompiler.compile(body, "AdminCreate");
+            console.log("🚀 ~ adminRegister: ~ validated:", validated)
 
             const adminCreated = await adminDbController.Admin.createAdmin(validated.data);
             if (adminCreated != null && adminCreated != undefined && Object.keys(adminCreated).length != 0) {

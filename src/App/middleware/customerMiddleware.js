@@ -5,37 +5,48 @@ import { authentications } from "../../core/utils/jwt.js";
 import { userDbController } from "../../core/database/Controller/userDbController.js";
 import { NodeMailerfunction } from "../../core/utils/nodemailer.js";
 import moment from "moment";
+import { PayloadCompiler } from "../../core/inc/access/PayloadCompiler.js";
+import { defaultdata } from "../../../config/config.js";
+
 
 export class customerMiddleware { }
 
 //customer
 customerMiddleware.Customer = {
   createCustomer: async ({ body }) => {
-    // const compiled = await PayloadCompiler.compile(body, "customerCreate");
+    const passwordSecret = defaultdata.configuration.passwordSecret;
+    // console.log("🚀 ~ createCustomer: ~  passwordSecret:", passwordSecret)
+    const validated = await PayloadCompiler.compile(body, "CustomerCreate");
+    // console.log("🚀 ~ createCustomer: ~ validated:", validated)
     const existingUser = await userDbController.Auth.checkUserExists(body);
     if (existingUser == null || existingUser == undefined || Object.keys(existingUser).length == 0) {
-      body.password = CryptoJS.AES.encrypt(body.password, configs.passwordSecret).toString();
+      body.password = CryptoJS.AES.encrypt(body.password, passwordSecret).toString();
+      // console.log("🚀 ~ createCustomer: ~ body.password:", body.password)
       if (moment(body.dob, "DD/MM/YYYY").year() >= 2005) {
         throw Error.SomethingWentWrong("Your age is not valid");
       }
       const newUser = await userDbController.Customer.createCustomer(body);
-      if (newUser != null && newUser != undefined && Object.keys(newUser).length != 0) {
-        //generate new verify token
-        await NodeMailerfunction.Email.getStarted(newUser);
-        return "Verification Link Sent";
-      }
-      else {
-        return "Failed to create User";
-      }
+      return " Registered Successfully";
+      // if (newUser != null && newUser != undefined && Object.keys(newUser).length != 0) {
+      //   //generate new verify token
+      //   await NodeMailerfunction.Email.getStarted(newUser);
+      //   return "Verification Link Sent";
+      // }
+      // else {
+      //   return "Failed to create User";
+      // }
     } else if (existingUser.status == "inactive") {
-      //activate Account
-      await NodeMailerfunction.Email.getStarted(existingUser);
-      return "Verification Link Sent Again";
-    } else if (existingUser.status == "terminated") {
-      //activate Account
-      await NodeMailerfunction.Email.getStarted(existingUser);
-      return "You have been Terminated..!";
+      return "Pls verify your account";
+
     }
+    //activate Account
+    // await NodeMailerfunction.Email.getStarted(existingUser);
+    // return "Verification Link Sent Again";
+    // } else if (existingUser.status == "terminated") {
+    //activate Account
+    // await NodeMailerfunction.Email.getStarted(existingUser);
+    // return "You have been Terminated..!";
+
     else {
       return "Account Already Exists";
     }

@@ -99,6 +99,4 @@ export const Configurations = async () => {
     jwtVendorSecret: appConfigs?.jwtVendorSecret,
     status: appConfigs?.status,
   });
-
 }
-

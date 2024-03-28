@@ -19,6 +19,7 @@ const authRouter = Router();
 authRouter.post("/email", emailLogin)
 
 
+
 //logout
 authRouter.post("/logout", logout)
 

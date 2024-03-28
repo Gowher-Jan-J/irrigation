@@ -44,11 +44,11 @@ export const defaultdata = {
     paymentGatewayId: "",
     paymentGatewaySecret: "",
     // paymentCallback: "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=",
-    passwordSecret: "Wlr9'Z~GWOaO=8nqT=*>lnAE6D3*>0ST]0lX;eg9KQj2Y8^-nKdH<fR;R7+!tqx",
+    passwordSecret: "srI50Y5zc5FXJWDNimYk/Yt0c0yWAARQqtUpFlI2lgMlx?kvC3HX!8T0sn?KfVs2",
     jwtClientSecret: "r;^WF~Upxuk1Vl9XZoNtzL]OFPpOlqqTrLJb4=$T(#LGOaUxxSodWncjUnt}(sH]",
     jwtAdminSecret: "INbMdG=Su7cSk8PxsGCkIlspYYc8Icrz==WAjTgVmp}3iYwAUo(Wl4fOQLCYniHn",
     jwtEmailSecret: ",QD}h'zFW4ZTzfF'P%tr['Go1heq~p(RS#&HaEvHenZuDdYdIHy$vrFZ-wGzKXXl",
-    // jwtVendorSecret: "Wlr9'Z~GWOaO=8nqT=*>lnAE6D3*>0ST]0lX;eg9KQj2Y8^-nKdH<fR;R7+!tqx",
+
     status: "active",
   },
 }

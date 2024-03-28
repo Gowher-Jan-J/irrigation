@@ -43,6 +43,7 @@ app.get("/getStarted", getStarted);
 
 //checkStatus
 app.use('/status', async (req, res) => { res.json({ data: `${process.env.APP_NAME} API is Now Live` }) });
+app.use('/hello', async (req, res) => { res.json({ data: `${process.env.APP_NAME} hello kowsi` }) });
 
 //404 handlers
 app.get("/", async (req, res) => {

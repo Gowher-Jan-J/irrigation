@@ -48,6 +48,7 @@ adminDbController.Auth = {
         raw: true,
       });
     } catch (error) {
+      console.log(error);
       throw Error.InternalError();
     }
   },
@@ -236,7 +237,6 @@ adminDbController.Admin = {
         email: data.email,
         phone: data.phone,
         password: data.password,
-        username:data.username,
         status: "inactive",
         type: "USER",
       }, { raw: true })
@@ -244,7 +244,19 @@ adminDbController.Admin = {
       console.log(error);
       throw Error.InternalError();
     }
-  }
+  },
+  getAdmin: async (data) => {
+    // console.log("data", data);
+    try {
+      return await adminDbController.Models.admin.findAll({
+
+      }, { raw: true })
+    } catch (error) {
+      console.log(error);
+      throw Error.InternalError();
+    }
+  },
+
 }
 
 //shop
